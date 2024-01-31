@@ -59,6 +59,20 @@ const Category=()=>{
 
     }
 
+    const handledelete = async()=>{
+
+        const token = localStorage.getItem("token");
+    try {
+      await axios.delete(`http://localhost:8080/categories/${category.id}`);
+      alert("Category Deleted Successfully")
+      navigate("/categories");
+    } catch (error) {
+        alert("Delete All the Items Before Deleting Category")
+        console.error("Error:", error);
+    }
+
+    };
+
 
     return(
         <>
@@ -88,6 +102,7 @@ const Category=()=>{
                 <div><label>Category Name</label></div>
                 <div><input className="form-control" type="text" id="catname" defaultValue={category.name}  required ></input></div>
                 <div className="py-3"><button className="btn btn-primary col-md-6 " type="submit">Update Category</button></div>
+                <div className="py-3"><button className="btn btn-danger col-md-6 " type="button" onClick={handledelete}>Delete Category</button></div>
             </div></form>
         </div>}
             

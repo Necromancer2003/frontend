@@ -14,10 +14,15 @@ const Checkout=()=>{
 
     
     const getProducts= async()=>{
+            try{
             const response = await axios.get('http://localhost:8080/products');
             setProducts(response.data);
+            }catch(error){
+                if(error.response.status===401){
+                    navigate("/login");
+                }
+            }
     }
-   
 
     const createOrder= async()=>{
         const productIds =orderProducts.map(obj=>obj.id);
@@ -25,8 +30,7 @@ const Checkout=()=>{
             item : productIds
         }
 
-        
-            const response = await axios.post('http://localhost:8080/orders',data);
+        const response = await axios.post('http://localhost:8080/orders',data);
             if(response.status==201){  
                 alert("Order Created!");
                 setOrderProducts([]);
@@ -34,7 +38,12 @@ const Checkout=()=>{
                 setTotal(0);
                 getProducts();
             }
+        
+
     }
+
+    //const updatedOrderProducts = orderProducts.filter(product => product.id !== productIdToRemove);
+    
 
     useEffect(()=>{
         getProducts();
@@ -71,7 +80,6 @@ const Checkout=()=>{
         </nav>
 
         <div className="container-fluid">
-            <h1>Checking Out</h1>
             <div className="row">
                     <div className="col-md-7">
                     <h2>Products</h2>

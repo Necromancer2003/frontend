@@ -18,7 +18,7 @@ const App=()=> {
     <BrowserRouter>
       <Routes>
       <Route element={<ProtectedRouts/>}>
-          <Route index element={<Home/>}/> 
+          
           <Route path="/products/:id" element={<SingleProduct/>}/>
           <Route path="/category/:id" element={<Category/>}/>
           <Route path="/checkout" element={<Checkout/>}/>
@@ -26,6 +26,7 @@ const App=()=> {
           <Route path="/categories" element={<Categories/>}/>
           <Route path="/orders" element={<Orders/>}/>
       </Route>
+        <Route index element={<Home/>}/> 
         <Route path="/register" element={<Register/>}/>
         <Route path="/login" element={<Login/>}/>
       </Routes>

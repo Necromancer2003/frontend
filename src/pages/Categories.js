@@ -17,7 +17,7 @@ const Categories=()=>{
     const getCategories=async()=>{
 
         try{
-            const response =await axios.get("http://localhost:8080/categories");
+            const response =await axios.get("http://localhost:8080/categoriesal");
             setCategories(response.data);
         }catch(error){
             if(error.response.status===401){
