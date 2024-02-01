@@ -12,21 +12,24 @@ import Login from './pages/Auth/Login';
 import ProtectedRouts from './utils/ProtectedRoutes';
 import Categories from './pages/Categories';
 import Orders from './pages/Orders';
+import Guest_Home from './pages/Guest_Home';
+import Users from './pages/Users';
 
 const App=()=> {
   return(
     <BrowserRouter>
       <Routes>
       <Route element={<ProtectedRouts/>}>
-          
+          <Route index element={<Home/>}/>
           <Route path="/products/:id" element={<SingleProduct/>}/>
           <Route path="/category/:id" element={<Category/>}/>
           <Route path="/checkout" element={<Checkout/>}/>
           <Route path="/products" element={<Product/>}/> 
           <Route path="/categories" element={<Categories/>}/>
           <Route path="/orders" element={<Orders/>}/>
+          <Route path="/users" element={<Users/>}/>
       </Route>
-        <Route index element={<Home/>}/> 
+        <Route path="/guest_home" element={<Guest_Home/>}/> 
         <Route path="/register" element={<Register/>}/>
         <Route path="/login" element={<Login/>}/>
       </Routes>

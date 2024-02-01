@@ -1,20 +1,25 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link,useNavigate } from "react-router-dom";
 
-const Orders=()=>{
+const Users=()=>{
+    const [users,setUsers]=useState(null);
+    useEffect(()=>{
+        getUsers();
+    },[])
 
-    const [items,setItems]=useState(null);
     const navigate = useNavigate();
 
-    const getALLOrders =async()=>{
-        const response =await axios.get('http://localhost:8080/orders');
-        setItems(response.data);
+    const getUsers= async()=>{
+        const token = localStorage.getItem("token");    
+        axios.defaults.headers.common['Authorization'] =`Bearer ${token}`;
+        try{
+        const response = await axios.get('http://localhost:8080/users');
+        setUsers(response.data);
+        }catch(error){
+            
+        }
     }
-
-    useEffect(()=>{
-        getALLOrders();
-    },[]);
 
     const handleLogout=()=>{
         localStorage.removeItem("token");
@@ -30,11 +35,10 @@ const Orders=()=>{
                 <ul className="navbar-nav">
                 <li className="nav-item px-2"><Link to ="/"><button className="btn btn-primary">Home</button></Link></li>
                 <li className="nav-item px-2"><Link to ="/checkout"><button className="btn btn-primary">Checkout</button></Link></li>
-                <li className="nav-item px-2"><Link to ="/orders"><button className="btn btn-light">Orders</button></Link></li>
+                <li className="nav-item px-2"><Link to ="/orders"><button className="btn btn-primary">Orders</button></Link></li>
                 <li className="nav-item px-2"><Link to ="/categories"><button className="btn btn-primary">Categories</button></Link></li>
                 <li className="nav-item px-2"><Link to ="/products"><button className="btn btn-primary">Products</button></Link></li>
-                <li className="nav-item px-2"><Link to ="/users"><button className="btn btn-primary">Users</button></Link></li>
-
+                <li className="nav-item px-2"><Link to ="/users"><button className="btn btn-light">Users</button></Link></li>
 
                 <li className="nav-item px-5">
                     <button className="btn btn-danger" onClick={handleLogout}>Logout</button>
@@ -43,30 +47,30 @@ const Orders=()=>{
     </div>
             </div>
         </nav>
-        <h1>Orders</h1>
-        <table className="table table-stripped">
+            <h1 className="mb-4 mt-1">Users</h1> 
+            <table className="table">
                     <thead className="thead-dark">
                         <tr>
-                            <th>ID</th>
-                            <th>Order Time</th>
-                            <th>Tax</th>
-                            <th>Total</th>
+                            <th scope="col">ID</th>
+                            <th scope="col">UserName</th>
+                            <th scope="col">Email</th>
+                            <th></th>
                         </tr>
                     </thead>
                     <tbody>
-                        {items && items.map(items=>(
-                            <tr key={items.id}>
-                                <td>{items.id}</td>
-                                <td>{items.ordertime}</td>
-                                <td>{items.tax}</td>
-                                <td>{items.total}</td>
+                        {users && users.map(user=>(
+                            <tr>
+                                <td>{user.id}</td>
+                                <td>{user.username}</td>
+                                <td>{user.email}</td>
+                                <td><button className="btn btn-warning">View</button></td>
                             </tr>
                         ))}
                     </tbody>
-                </table>
-                </>
-        
+                </table>   
+
+            
+        </>
     )
 }
-
-export default Orders;
+export default Users;

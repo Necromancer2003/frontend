@@ -21,7 +21,7 @@ const Product=()=>{
     const getProducts= async()=>{
 
         try{
-            const response =await axios.get("http://localhost:8080/products");
+            const response =await axios.get("http://localhost:8080/productss");
             setProducts(response.data);
         }catch(error){
             if(error.response.status===401){
@@ -34,7 +34,7 @@ const Product=()=>{
     const getCategories=async()=>{
 
         try{
-            const response =await axios.get("http://localhost:8080/categories");
+            const response =await axios.get("http://localhost:8080/categoriesal");
             setCategories(response.data);
         }catch(error){
             if(error.response.status===401){
@@ -98,6 +98,8 @@ const Product=()=>{
                 <li className="nav-item px-2"><Link to ="/orders"><button className="btn btn-primary">Orders</button></Link></li>
                 <li className="nav-item px-2"><Link to ="/categories"><button className="btn btn-primary">Categories</button></Link></li>
                 <li className="nav-item px-2"><Link to ="/products"><button className="btn btn-light">Products</button></Link></li>
+                <li className="nav-item px-2"><Link to ="/users"><button className="btn btn-primary">Users</button></Link></li>
+
                     <li className="nav-item px-5">
 
                         <button className="btn btn-danger" onClick={handleLogout}>Logout</button>
@@ -118,7 +120,7 @@ const Product=()=>{
                                     <div class="card-body py-2">
                                 <div className="product-box px-2 py-2" key={product.id}>
                                 <h5 class="card-title">{product.name}</h5>
-                                <a href={`/products/${product.id}`} class="btn btn-primary">Edit</a>
+                                <a href={`/products/${product.id}`} class="btn btn-info">Edit</a>
                                 </div></div></div>
                             </div>
                             ))}

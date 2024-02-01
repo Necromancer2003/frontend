@@ -41,7 +41,7 @@ const Login =()=>{
     return( 
         <div className="login-box">
             <div className="text-center mb-5">
-                <h1>User Login</h1>
+                <h1>Login</h1>
             </div>
             <form onSubmit={handleLogin}>
                 <div className="form-group mb-3">
@@ -54,6 +54,8 @@ const Login =()=>{
                 <button type="submit" className="btn btn-primary col-md-6">Login</button>
                 <Link to ="/register"><button type="register" className="btn btn-primary col-md-6">Register Here</button></Link>
                 </div>
+                <div className="py-3"><Link to ="/guest_home"><button type="button" className="btn btn-warning col-md-12">Guest</button></Link></div>
+                
             </form>
         </div>
     )

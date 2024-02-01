@@ -1,8 +1,8 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link,useNavigate } from "react-router-dom";
 
-const Home=()=>{
+const Guest_Home=()=>{
     const [products,setProducts]=useState(null);
     useEffect(()=>{
         getProducts();
@@ -21,34 +21,24 @@ const Home=()=>{
         }
     }
 
-    const handleLogout=()=>{
-        localStorage.removeItem("token");
-        navigate("/login");
-    }
-
-
     return(
         <>
-        <nav className="navbar navbar-expand-lg bg-body-tertiary">
-            <div className="container-fluid">
-                <div className="collapse navbar-collapse" id="navbarNav">
-                <ul className="navbar-nav">
-                <li className="nav-item px-2"><Link to ="/"><button className="btn btn-light">Home</button></Link></li>
-                <li className="nav-item px-2"><Link to ="/checkout"><button className="btn btn-primary">Checkout</button></Link></li>
-                <li className="nav-item px-2"><Link to ="/orders"><button className="btn btn-primary">Orders</button></Link></li>
-                <li className="nav-item px-2"><Link to ="/categories"><button className="btn btn-primary">Categories</button></Link></li>
-                <li className="nav-item px-2"><Link to ="/products"><button className="btn btn-primary">Products</button></Link></li>
-                <li className="nav-item px-2"><Link to ="/users"><button className="btn btn-primary">Users</button></Link></li>
-
-                <li className="nav-item px-5">
-                    <button className="btn btn-danger" onClick={handleLogout}>Logout</button>
-                </li>    
+        <nav className="navbar navbar-expand-lg bg-body-tertiary nav justify-content-end">
+           
+                <ul className="nav justify-content-end">
+                
+                
+                <li className="nav-item px-1"><Link to ="/login"><button className="btn btn-primary px-5  py-2">Login</button></Link></li>
+                <li className="nav-item px-4"><Link to ="/register"><button className="btn btn-primary px-4  py-2">Register</button></Link></li>
+                   
                 </ul>
-    </div>
-            </div>
+    
+           
         </nav>
-            <h1 className="mb-4 mt-1">Available Products</h1> 
-            <div class="row">
+
+        <h1>Available Products</h1>
+        
+            <div class="row py-4 ">
                     {products && products.map(product=>{
  
                         if (product.qty > 0) {
@@ -70,10 +60,9 @@ const Home=()=>{
                             </div></div>
                             );
                         }
-                        })}</div>      
-
-            
+                        })}</div>  
         </>
     )
+
 }
-export default Home;
+export default Guest_Home;

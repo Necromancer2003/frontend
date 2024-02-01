@@ -11,11 +11,14 @@ const Checkout=()=>{
 
     const navigate=useNavigate();
 
+    const handlePrint = () => {
+        window.print();
+      };
 
     
     const getProducts= async()=>{
             try{
-            const response = await axios.get('http://localhost:8080/products');
+            const response = await axios.get('http://localhost:8080/productss');
             setProducts(response.data);
             }catch(error){
                 if(error.response.status===401){
@@ -70,6 +73,8 @@ const Checkout=()=>{
                 <li className="nav-item px-2"><Link to ="/orders"><button className="btn btn-primary">Orders</button></Link></li>
                 <li className="nav-item px-2"><Link to ="/categories"><button className="btn btn-primary">Categories</button></Link></li>
                 <li className="nav-item px-2"><Link to ="/products"><button className="btn btn-primary">Products</button></Link></li>
+                <li className="nav-item px-2"><Link to ="/users"><button className="btn btn-primary">Users</button></Link></li>
+ 
                     <li className="nav-item px-5">
 
                         <button className="btn btn-danger" onClick={handleLogout}>Logout</button>

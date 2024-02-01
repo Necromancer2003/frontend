@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import {Link ,useNavigate, useParams } from "react-router-dom";
 
 
 const SingleProduct=()=>{
@@ -33,7 +33,7 @@ const SingleProduct=()=>{
     const getCategories=async()=>{
 
         try{
-            const response =await axios.get("http://localhost:8080/categories");
+            const response =await axios.get("http://localhost:8080/categoriesal");
             setCategories(response.data);
         }catch(error){
             if(error.response.status===401){
@@ -106,6 +106,16 @@ const SingleProduct=()=>{
 
     return(
         <>
+        <nav className="navbar navbar-expand-lg bg-body-tertiary">
+            <div className="container-fluid">
+                <div className="collapse navbar-collapse" id="navbarNav">
+                <ul className="navbar-nav">
+                <li className="nav-item px-2"><Link to ="/products"><button className="btn btn-primary">&#60;Back</button></Link></li>
+                   
+                </ul>
+    </div>
+            </div>
+        </nav>
 
         {product && 
         <div className="login-box">
@@ -135,7 +145,7 @@ const SingleProduct=()=>{
                         ))}
                     </select>
                 </div>
-                <div className="row"><div className="py-3"><button className="btn btn-primary col-md-6" type="submit">Update Item</button></div><div className="py-3"><button className="btn btn-danger col-md-6" type="button" onClick={handledelete}>Delete Item</button></div></div>
+                <div className="row"><div className="py-3"><button className="btn btn-warning col-md-6" type="submit">Update Item</button></div><div className="py-3"><button className="btn btn-danger col-md-6" type="button" onClick={handledelete}>Delete Item</button></div></div>
                 </form>
             </div></div>
             }

@@ -14,6 +14,7 @@ const Category=()=>{
 
     const navigate = useNavigate();
 
+    
     const getCategory= async()=>{
 
         try{
@@ -76,6 +77,18 @@ const Category=()=>{
 
     return(
         <>
+        <nav className="navbar navbar-expand-lg bg-body-tertiary">
+            <div className="container-fluid">
+                <div className="collapse navbar-collapse" id="navbarNav">
+                <ul className="navbar-nav">
+                <li className="nav-item px-2"><Link to ="/categories"><button className="btn btn-primary">&#60;Back</button></Link></li>
+                   
+                </ul>
+    </div>
+            </div>
+        </nav>
+
+
         {category &&
         <h1 className="text-center">{category.name}</h1>
         }
@@ -89,7 +102,7 @@ const Category=()=>{
                                     <div class="card-body py-2">
                                 <div className="product-box px-2 py-2" key={product.id}>
                                 <h5 class="card-title">{product.name}</h5>
-                                <a href={`/products/${product.id}`} class="btn btn-primary">Edit</a>
+                                <a href={`/products/${product.id}`} class="btn btn-info">Edit</a>
                                 </div></div></div>
                             </div>
                             ))}
@@ -101,7 +114,7 @@ const Category=()=>{
             <div className="form-group mb-1">
                 <div><label>Category Name</label></div>
                 <div><input className="form-control" type="text" id="catname" defaultValue={category.name}  required ></input></div>
-                <div className="py-3"><button className="btn btn-primary col-md-6 " type="submit">Update Category</button></div>
+                <div className="py-3"><button className="btn btn-warning col-md-6 " type="submit">Update Category</button></div>
                 <div className="py-3"><button className="btn btn-danger col-md-6 " type="button" onClick={handledelete}>Delete Category</button></div>
             </div></form>
         </div>}

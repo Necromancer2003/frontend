@@ -64,6 +64,7 @@ const Categories=()=>{
                 <li className="nav-item px-2"><Link to ="/orders"><button className="btn btn-primary">Orders</button></Link></li>
                 <li className="nav-item px-2"><Link to ="/categories"><button className="btn btn-light">Categories</button></Link></li>
                 <li className="nav-item px-2"><Link to ="/products"><button className="btn btn-primary">Products</button></Link></li>
+                <li className="nav-item px-2"><Link to ="/users"><button className="btn btn-primary">Users</button></Link></li>
 
                 <li className="nav-item px-5">
 
